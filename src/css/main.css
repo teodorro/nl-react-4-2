@@ -1,0 +1,12 @@
+.steps{
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 2em;
+  padding: 2em;
+  border: 1px solid #000;
+  background-color: whitesmoke;
+  border-radius: 1em;
+}
