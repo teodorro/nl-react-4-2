@@ -1,12 +1,73 @@
-.steps{
+.steps {
   position: absolute;
   bottom: 0;
   top: 0;
   left: 0;
   right: 0;
-  margin: 2em;
+  max-width: 800px;
+  min-width: 500px;
+  margin: 2em auto;
   padding: 2em;
-  border: 1px solid #000;
+  box-shadow: 0em 0.5em 1em 0.2em grey;
   background-color: whitesmoke;
   border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.steps-table {
+  margin: 2em;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+.steps-header {
+  display: flex;
+  /* justify-content: space-around; */
+  justify-content: space-between;
+  align-items: end;
+  margin: 1em 2em;
+}
+.steps-date-label,
+.steps-km-label {
+  margin: 0.5em;
+  text-align: left;
+}
+.steps-date-input,
+.steps-km-input {
+  background-color: whitesmoke;
+  height: 1.5em;
+  padding: 0.5em;
+  color: #000;
+  border-radius: 0.5em;
+  border: 1px solid grey;
+  color-scheme: normal;
+}
+.steps-header-ok {
+  background: seagreen;
+}
+
+.steps-table-header {
+  display: flex;
+  /* justify-content: space-around; */
+  justify-content: space-between;
+  align-items: end;
+  margin: 1em 2em;
+}
+.steps-table-content {
+  border: 1px solid #000;
+  border-radius: 1em;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.step-item {
+  display: flex;
+  flex:auto;
+  max-height: 3em;
+  justify-content: space-between;
+  align-items:center;
+  margin: 0.3em;
+  padding: 0.3em;
+  border: 1px solid #000;
 }
