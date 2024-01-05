@@ -8,8 +8,8 @@ export default function Step({ item }) {
         <div className="step-date">{item.date}</div>
         <div className="step-km">{item.km}</div>
         <div className="step-actions">
-          <button className="step-edit"></button>
-          <button className="step-delete"></button>
+          <button className="step-button step-edit material-icons">edit</button>
+          <button className="step-button step-delete material-icons" onClick={() => item.remove()}>close</button>
         </div>
       </div>
     </>
