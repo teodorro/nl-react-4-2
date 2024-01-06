@@ -5,7 +5,9 @@ import Step from "./Step";
 Date.prototype.toDateInputValue = function () {
   var local = new Date(this);
   local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-  return local.toJSON().slice(0, 10);
+  const date = local.toJSON().slice(0, 10).split("-");
+  const val = `${date[2]}.${date[1]}.${date[0]}`;
+  return val;
 };
 
 export default function Steps() {
@@ -20,21 +22,21 @@ export default function Steps() {
         className="steps"
         onSubmit={(e) => {
           e.preventDefault();
-          let curItem = itemsRef.current.find((item) => item.date === date);
+          let curItem = itemsRef.current.find((item) => item.date === convertDateMinus2Dot(date));
           if (curItem == null) {
             curItem = {
-              date: date,
+              date: convertDateMinus2Dot(date),
               km: parseFloat(km),
               remove: () => {
                 itemsRef.current = itemsRef.current.filter(
-                  (item) => item.date !== date
+                  (item) => item.date !== convertDateMinus2Dot(date)
                 );
                 setItems(itemsRef.current);
               },
               edit: () => {
-                setDate(curItem.date);
+                setDate(convertDateDot2Minus(curItem.date));
                 setKm(curItem.km);
-              }
+              },
             };
             itemsRef.current = [itemsRef.current, curItem].flat();
             setItems(itemsRef.current);
@@ -43,7 +45,7 @@ export default function Steps() {
             itemsRef.current = [...itemsRef.current];
             setItems(itemsRef.current);
           }
-          setDate('');
+          setDate("");
           setKm(0);
         }}
       >
@@ -89,15 +91,27 @@ export default function Steps() {
             <div className="steps-table-actions">Действия</div>
           </div>
           <div className="steps-table-content">
-            {itemsRef.current.map((item) => (
-              <Step
-                item={item}
-                key={item.date}
-              ></Step>
-            ))}
+            {itemsRef.current
+              // .sort((x, y) => x.toDateInputValue() > y.toDateInputValue())
+              .map((item) => (
+                <Step
+                  item={item}
+                  key={item.date}
+                ></Step>
+              ))}
           </div>
         </div>
       </form>
     </>
   );
+}
+
+function convertDateMinus2Dot(date) {
+  const dateParts = date.split("-");
+  return `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
+}
+
+function convertDateDot2Minus(date) {
+  const dateParts = date.split(".");
+  return `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
 }
