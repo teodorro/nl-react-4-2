@@ -31,6 +31,10 @@ export default function Steps() {
                 );
                 setItems(itemsRef.current);
               },
+              edit: () => {
+                setDate(curItem.date);
+                setKm(curItem.km);
+              }
             };
             itemsRef.current = [itemsRef.current, curItem].flat();
             setItems(itemsRef.current);
