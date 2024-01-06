@@ -33,12 +33,13 @@ export default function Steps() {
             };
             itemsRef.current = [itemsRef.current, curItem].flat();
             setItems(itemsRef.current);
-            setDate('');
-            setKm(0);
           } else {
             curItem.km = Math.round((curItem.km + parseFloat(km)) * 10) / 10;
-            setItems(items.current);
+            itemsRef.current = [...itemsRef.current];
+            setItems(itemsRef.current);
           }
+          setDate('');
+          setKm(0);
         }}
       >
         <div className="steps-header">
