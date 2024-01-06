@@ -33,6 +33,8 @@ export default function Steps() {
             };
             itemsRef.current = [itemsRef.current, curItem].flat();
             setItems(itemsRef.current);
+            setDate('');
+            setKm(0);
           } else {
             curItem.km = Math.round((curItem.km + parseFloat(km)) * 10) / 10;
             setItems(items.current);
@@ -81,7 +83,7 @@ export default function Steps() {
             <div className="steps-table-actions">Действия</div>
           </div>
           <div className="steps-table-content">
-            {items.map((item) => (
+            {itemsRef.current.map((item) => (
               <Step
                 item={item}
                 key={item.date}
