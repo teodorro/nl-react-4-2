@@ -11,7 +11,7 @@ Date.prototype.toDateInputValue = function () {
 };
 
 export default function Steps() {
-  const [date, setDate] = useState(new Date().toDateInputValue());
+  const [date, setDate] = useState("");
   const [km, setKm] = useState(0);
   // eslint-disable-next-line no-unused-vars
   const [items, setItems] = useState([]);
@@ -80,6 +80,7 @@ export default function Steps() {
           <button
             className="steps-header-ok"
             type="submit"
+            disabled={km === 0 || km === "0" || date === ""}
           >
             OK
           </button>
@@ -92,7 +93,7 @@ export default function Steps() {
           </div>
           <div className="steps-table-content">
             {itemsRef.current
-              // .sort((x, y) => x.toDateInputValue() > y.toDateInputValue())
+              .sort((x, y) => compareDates(x.date, y.date))
               .map((item) => (
                 <Step
                   item={item}
@@ -114,4 +115,18 @@ function convertDateMinus2Dot(date) {
 function convertDateDot2Minus(date) {
   const dateParts = date.split(".");
   return `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+}
+
+function compareDates(date1, date2) {
+  const dateParts1 = date1.split(".");
+  const x = new Date(dateParts1[2], dateParts1[1], dateParts1[0]);
+  const dateParts2 = date2.split(".");
+  const y = new Date(dateParts2[2], dateParts2[1], dateParts2[0]);
+  if (x > y) {
+    return -1;
+  }
+  if (x < y) {
+    return 1;
+  }
+  return 0;
 }
