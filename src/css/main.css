@@ -1,12 +1,16 @@
-.steps {
+.steps-wrapper {
   position: absolute;
-  bottom: 0;
   top: 0;
   left: 0;
   right: 0;
   max-width: 800px;
   min-width: 500px;
-  margin: 2em auto;
+  min-height: 400px;
+  margin: 0 auto;
+}
+
+.steps {
+  margin: 2em;
   padding: 2em;
   box-shadow: 0em 0.5em 1em 0.2em grey;
   background-color: whitesmoke;
@@ -20,6 +24,7 @@
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  min-height: 120px;
 }
 .steps-header {
   display: flex;
@@ -75,7 +80,6 @@
   align-items: center;
   margin: 0.0em 0em;
   padding: 0.2em 1em;
-  /* border: 1px solid #000; */
 }
 .step-item:hover {
   background:#eee;

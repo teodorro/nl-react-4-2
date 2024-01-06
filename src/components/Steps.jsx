@@ -11,6 +11,7 @@ Date.prototype.toDateInputValue = function () {
 export default function Steps() {
   const [date, setDate] = useState(new Date().toDateInputValue());
   const [km, setKm] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [items, setItems] = useState([]);
   const itemsRef = useRef([]);
   return (
